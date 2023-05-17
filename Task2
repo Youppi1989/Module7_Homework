@@ -1,0 +1,11 @@
+function checkMe(property, obj) {
+return property in obj;
+}
+const myObject = {
+  key1: 'value1',
+  key2: 'value2',
+  key3: 'value3'
+};
+
+console.log(checkMe('key1', myObject)); 
+console.log(checkMe('key6', myObject)); 
