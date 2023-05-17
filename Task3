@@ -1,0 +1,7 @@
+function EmptyObject() {
+  return Object.create(null);
+}
+const myObject = EmptyObject();
+
+console.log(myObject); 
+console.log(Object.getPrototypeOf(myObject)); 
