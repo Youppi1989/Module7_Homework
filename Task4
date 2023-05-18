@@ -1,0 +1,53 @@
+
+function ElectronicDevice(name, power) {
+  this.name = name; 
+  this.power = power; 
+  this.pluggedIn = false; 
+
+  this.plugIn = function () {
+    this.pluggedIn = true;
+    console.log(this.name + ' Включен (а)');
+  };
+
+  this.unplug = function () {
+    this.pluggedIn = false;
+    console.log(this.name + ' Выключен (а)');
+  };
+}
+
+
+function Lamp(name, power, brightness) {
+  ElectronicDevice.call(this, name, power);
+  this.brightness = brightness; 
+  this.setBrightness = function (brightness) {
+    this.brightness = brightness;
+    console.log('Яркость  ' + this.name + ' установлен на ' + brightness);
+  };
+}
+
+Lamp.prototype = Object.create(ElectronicDevice.prototype);
+Lamp.prototype.constructor = Lamp;
+
+
+function Computer(name, power, year) {
+  ElectronicDevice.call(this, name, power);
+  this.year = year; 
+  this.start = function () {
+    console.log('Компьютер ' + this.name + ' включен.');
+  };
+}
+
+Computer.prototype = Object.create(ElectronicDevice.prototype);
+Computer.prototype.constructor = Computer;
+
+let lamp = new Lamp('Настольная лампа', 60, 3);
+let computer = new Computer('Компьютер', 500, 2017);
+let totalPower = lamp.power + computer.power;
+console.log('Суммарная потребляемая мощность: ' + totalPower + ' Вт');
+
+lamp.plugIn();
+lamp.setBrightness(5);
+
+
+lamp.unplug();
+computer.unplug();
