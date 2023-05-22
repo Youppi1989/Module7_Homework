@@ -1,0 +1,51 @@
+class ElectronicDevice {
+constructor(name, power) {
+this.name = name;
+this.power = power;
+this.pluggedIn = false;
+}
+
+plugIn() {
+this.pluggedIn = true;
+console.log(this.name + ' подключен к электрической сети.');
+}
+
+unplug() {
+this.pluggedIn = false;
+console.log(this.name + ' отключен от электрической сети.');
+}
+}
+
+class Lamp extends ElectronicDevice {
+constructor(name, power, brightness) {
+super(name, power);
+this.brightness = brightness;
+}
+
+setBrightness(brightness) {
+this.brightness = brightness;
+console.log('Яркость ' + this.name + ' установлена на ' + brightness + '.');
+}
+}
+
+class Computer extends ElectronicDevice {
+constructor(name, power, year) {
+super(name, power);
+this.year = year;
+}
+
+start() {
+console.log('Компьютер ' + this.name + ' включен.');
+}
+}
+
+let lamp = new Lamp('Настольная лампа', 60, 3);
+let computer = new Computer('Компьютер', 500, 2017);
+let totalPower = lamp.power + computer.power;
+console.log('Суммарная потребляемая мощность: ' + totalPower + ' Вт');
+
+lamp.plugIn();
+lamp.setBrightness(5);
+
+lamp.unplug();
+computer.unplug();
